@@ -1,0 +1,25 @@
+<launch>
+  <param name="/use_sim_time" value="true" />
+
+  <!-- start world -->
+  <!-- $(find turtlebot_gazebo)/worlds/corridor.world -->
+  <node name="gazebo" pkg="gazebo_ros" type="gazebo"
+   args="$(find turtlebot_gazebo)/worlds/corridor.world" respawn="false" output="screen" />
+
+  <!-- include our robots -->
+  <include file="$(find multirobot_slam)/launch/robots.launch"/>
+
+
+  <node pkg="tf" type="static_transform_publisher" name="robot2_to_robot1" args="2 -4 0 0 0 0 robot1/map robot2/map 20" />
+  <!-- -->
+  <node pkg="tf" type="static_transform_publisher" name="robot3_to_robot1" args="-1 2 0 0 0 0 robot1/map robot3/map 20" />
+
+
+  <include file="$(find multirobot_slam)/launch/init_poses.launch"/>
+  <include file="$(find multirobot_slam)/launch/map_merge.launch"/>
+
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find multirobot_slam)/launch/includes/rviz_conf.rviz"></node>
+
+
+</launch>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<launch>
+<!--
+    <arg name="robot1_initial_x" default="-7" />
+    <arg name="robot1_initial_y" default="-3" />
+
+    <arg name="robot1_des_x" default="6" />
+    <arg name="robot1_des_y" default="-5" />
+
+    <arg name="robot2_initial_x" default="7" />
+    <arg name="robot2_initial_y" default="5" />
+
+    <arg name="robot2_des_x" default="-7" />
+    <arg name="robot2_des_y" default="4" />
+-->
+
+    <arg name="robot1_initial_x" default="-8" />
+    <arg name="robot1_initial_y" default="8" />
+
+    <arg name="robot1_des_x" default="8" />
+    <arg name="robot1_des_y" default="-8" />
+
+    <arg name="robot2_initial_x" default="-8" />
+    <arg name="robot2_initial_y" default="-8" />
+
+    <arg name="robot2_des_x" default="8" />
+    <arg name="robot2_des_y" default="8" />
+
+<!--
+    <arg name="robot3_initial_x" default="-5" />
+    <arg name="robot3_initial_y" default="4" />
+
+
+    <arg name="robot3_des_x" default="1" />
+    <arg name="robot3_des_y" default="2" />
+-->
+
+    <param name="robot1_initial_x" value="$(arg robot1_initial_x)" />
+    <param name="robot1_initial_y" value="$(arg robot1_initial_y)" />
+    <param name="robot1_des_pos_x" value="$(arg robot1_des_x)" />
+    <param name="robot1_des_pos_y" value="$(arg robot1_des_y)" />
+    <node pkg="multirobot_slam" type="follow_wall_1.py" name="wall_follower" />
+    <remap from="cmd_vel" to="robot1/cmd_vel"/>
+
+    <param name="robot2_initial_x" value="$(arg robot2_initial_x)" />
+    <param name="robot2_initial_y" value="$(arg robot2_initial_y)" />
+    <param name="robot2_des_pos_x" value="$(arg robot2_des_x)" />
+    <param name="robot2_des_pos_y" value="$(arg robot2_des_y)" />
+    <node pkg="multirobot_slam" type="follow_wall_2.py" name="wall_follower_2" />
+    <remap from="cmd_vel" to="robot2/cmd_vel"/>
+
+
+<!--
+    <param name="robot3_initial_x" value="$(arg robot3_initial_x)" />
+    <param name="robot3_initial_y" value="$(arg robot3_initial_y)" />
+    <param name="robot3_des_pos_x" value="$(arg robot3_des_x)" />
+    <param name="robot3_des_pos_y" value="$(arg robot3_des_y)" />
+    <node pkg="multirobot_slam" type="follow_wall_3.py" name="wall_follower_3" />
+    <remap from="cmd_vel" to="robot3/cmd_vel"/>
+-->
+</launch>

@@ -1,0 +1,2 @@
+models/my_worlds:models/robot_description
+-DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCATKIN_DEVEL_PREFIX=/home/user/simulation_ws/devel -DCMAKE_INSTALL_PREFIX=/home/user/simulation_ws/install -G Unix Makefiles

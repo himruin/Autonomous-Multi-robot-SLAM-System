@@ -1,0 +1,41 @@
+<launch>
+  <param name="robot_description"
+    command="$(find xacro)/xacro.py $(find robot_description)/urdf/robot.xacro" />
+
+  <!-- BEGIN ROBOT 1-->
+  <group ns="robot1">
+    <include file="$(find multirobot_slam)/launch/includes/robot.launch.xml" >
+      <arg name="init_pose" value="-x -1 -y -3 -z 0" />
+      <arg name="robot_name"  value="robot1" />
+    </include>
+
+	<include file="$(find multirobot_slam)/launch/gmapping.launch">
+	  <arg name="namespace" value="robot1"/>
+	</include>
+  </group>
+
+  <!-- BEGIN ROBOT 2-->
+  <group ns="robot2">
+    <include file="$(find multirobot_slam)/launch/includes/robot.launch.xml" >
+      <arg name="init_pose" value="-x 2 -y -4 -z 0" />
+      <arg name="robot_name"  value="robot2" />
+    </include>
+
+	<include file="$(find multirobot_slam)/launch/gmapping.launch">
+	  <arg name="namespace" value="robot2"/>
+	</include>
+  </group>
+
+  <!-- BEGIN ROBOT 3 -->
+  <group ns="robot3">
+    <include file="$(find multirobot_slam)/launch/includes/robot.launch.xml" >
+      <arg name="init_pose" value="-x -1 -y 2 -z 0" />
+      <arg name="robot_name"  value="robot3" />
+    </include>
+
+	<include file="$(find multirobot_slam)/launch/gmapping.launch">
+	  <arg name="namespace" value="robot3"/>
+	</include>
+  </group>
+<!-- -->
+</launch>
